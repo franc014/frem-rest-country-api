@@ -18,7 +18,7 @@
   </svg>
   <input
     id="search-country"
-    class="min-h-full w-full text-xs rounded-tr rounded-br"
+    class="min-h-full w-full text-xs rounded-tr rounded-br pl-4"
     type="text"
     autocomplete=""
     placeholder="Search for a country..."

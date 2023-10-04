@@ -1,11 +1,22 @@
-<div class="bg-indigo-100">
-  <h2 class="mb-4">Germany</h2>
-  <ul class="text-xs flex flex-col gap-2">
-    <li>Population: <span>81000000</span></li>
-    <li>Region: <span>Europe</span></li>
-    <li>Capital: <span>Berlin</span></li>
-  </ul>
-</div>
+<script>
+  export let country;
+</script>
+
+<a href={`/api/`} class=" block shadow-md rounded">
+  <img
+    class="w-full object-cover rounded-t h-36"
+    src={country.flags.svg}
+    alt={`Flag of ${country.name.common}`}
+  />
+  <div class="pt-4 pb-10 px-5">
+    <h2 class="mb-4 font-bold">{country.name.common}</h2>
+    <ul class="text-xs flex flex-col gap-2">
+      <li>Population: <span>{country.population}</span></li>
+      <li>Region: <span>{country.region}</span></li>
+      <li>Capital: <span>{country.capital[0]}</span></li>
+    </ul>
+  </div>
+</a>
 
 <style>
   ul li {
