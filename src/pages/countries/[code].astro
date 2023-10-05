@@ -2,9 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 
 
-//console.log(`${Astro.url}`);
-
-
 export async function getStaticPaths() {
   const countriesApiResponse = await fetch(`http://localhost:4321/api/countries.json`);
   const countriesJson = await countriesApiResponse.json();
@@ -17,6 +14,12 @@ export async function getStaticPaths() {
   return countriesParams;
 }
 
+const {code} = Astro.params;
+
+const countryResponse = await fetch (`http://localhost:4321/api/${code}.json`);
+const {country} = await countryResponse.json();
+
+console.log(Object.values(country.name.nativeName)[0]);
 ---
 <Layout  title="Country">
   <main class="font-primary">
@@ -29,22 +32,22 @@ export async function getStaticPaths() {
         </a>
         <div class="grid-country grid gap-1">
           <div class="">
-            <img class="w-11/12 object-cover" src="https://flagcdn.com/w320/kn.png" alt="camerum">
+            <img class="w-11/12 object-cover" src={country.flags.svg} alt={country.name.common}>
           </div>
           <div class="px-10">
-            <h2 class="text-2xl tracking-wide font-bold mb-10">Belgium</h2>
+            <h2 class="text-2xl tracking-wide font-bold mb-10">{country.name.common}</h2>
             <div class="country-details grid gap-4">
               <ul>
-                <li>Native Name: <span>Belgie</span></li>
-                <li>Population: <span>Belgie</span></li>
-                <li>Region: <span>Belgie</span></li>
-                <li>Sub Region: <span>Belgie</span></li>
-                <li>Capitale: <span>Belgie</span></li>
+                <li>Native Name: <span>{Object.values(country.name.nativeName)[0].official}</span></li>
+                <li>Population: <span>{country.population}</span></li>
+                <li>Region: <span>{country.region}</span></li>
+                <li>Sub Region: <span>{country.subregion}</span></li>
+                <li>Capitale: <span>{country.capital[0]}</span></li>
               </ul>
               <ul>
-                <li>Top Level Domain: <span>Belgie</span></li>
-                <li>Currencies: <span>Belgie</span></li>
-                <li>Languages: <span>Belgie</span></li>
+                <li>Top Level Domain: <span>{country.tld[0]}</span></li>
+                <li>Currencies: <span>{Object.keys(country.currencies)[0]}</span></li>
+                <li>Languages: <span>{Object.values(country.languages)[0]}</span></li>
               </ul>
               <footer class="flex mt-10 items-center">
                 <h3 class="text-xs">Border Countries: </h3>
