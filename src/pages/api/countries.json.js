@@ -1,6 +1,6 @@
 export async function GET({ params, request }) {
     
-    const fields = `name,population,region,capital,flags,cca2`;
+    const fields = `name,population,region,capital,flags,cca3`;
     const countriesAPIResponse = await fetch(`https://restcountries.com/v3.1/all?fields=${fields}`);
     const countries = await countriesAPIResponse.json();
 

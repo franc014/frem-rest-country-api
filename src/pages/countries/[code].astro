@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const countriesJson = await countriesApiResponse.json();
   function mapCountries(country){
     return {
-      params: {code : country.cca2}
+      params: {code : country.cca3}
     }
   }
   const countriesParams = countriesJson.countries.map(mapCountries);
@@ -19,7 +19,17 @@ const {code} = Astro.params;
 const countryResponse = await fetch (`http://localhost:4321/api/${code}.json`);
 const {country} = await countryResponse.json();
 
-console.log(Object.values(country.name.nativeName)[0]);
+const currencies = country.currencies ? Object.values(country.currencies) : ['N/A'];
+const borders = country.borders;
+const languages = country.languages ? Object.values(country.languages) : ['N/A'];
+
+const languagesMap = languages.map(language=>language).join(', ');
+const currenciesMap = currencies.map(currency=>currency.name).join(', ');
+
+
+
+const nativeName = country.name.nativeName ? Object.values(country.name.nativeName)[0].official : 'N/A';
+
 ---
 <Layout  title="Country">
   <main class="font-primary">
@@ -38,23 +48,29 @@ console.log(Object.values(country.name.nativeName)[0]);
             <h2 class="text-2xl tracking-wide font-bold mb-10">{country.name.common}</h2>
             <div class="country-details grid gap-4">
               <ul>
-                <li>Native Name: <span>{Object.values(country.name.nativeName)[0].official}</span></li>
+                <li>Native Name: <span>{nativeName}</span></li>
                 <li>Population: <span>{country.population}</span></li>
                 <li>Region: <span>{country.region}</span></li>
                 <li>Sub Region: <span>{country.subregion}</span></li>
-                <li>Capitale: <span>{country.capital[0]}</span></li>
+                <li>Capitale: <span>{country.capital && country.capital[0]}</span></li>
               </ul>
               <ul>
                 <li>Top Level Domain: <span>{country.tld[0]}</span></li>
-                <li>Currencies: <span>{Object.keys(country.currencies)[0]}</span></li>
-                <li>Languages: <span>{Object.values(country.languages)[0]}</span></li>
+                <li>Currencies: 
+                   
+                 <span>{currenciesMap}</span>
+        
+                </li>
+                <li>Languages: 
+                  <span>{languagesMap}</span>
+                </li>
               </ul>
               <footer class="flex mt-10 items-center">
                 <h3 class="text-xs">Border Countries: </h3>
-                <ul class="border-countries flex gap-4 items-center ml-2">
-                  <li><a href="">France</a></li>
-                  <li><a href="">France</a></li>
-                  <li><a href="">France</a></li>
+                <ul class="border-countries flex gap-2 items-center ml-2 flex-wrap">
+                  {borders?.map((border)=>{
+                    return <li><a href={`/countries/${border}`}>{border}</a></li>;
+                  }) || 'N/A'}
                 </ul>
               </footer>
             </div>

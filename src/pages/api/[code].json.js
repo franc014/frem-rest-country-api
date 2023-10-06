@@ -3,7 +3,7 @@ export async function getStaticPaths() {
   const countriesJson = await countriesApiResponse.json();
   function mapCountries(country){
     return {
-      params: {code : country.cca2}
+      params: {code : country.cca3}
     }
   }
   const countriesParams = countriesJson.countries.map(mapCountries);
