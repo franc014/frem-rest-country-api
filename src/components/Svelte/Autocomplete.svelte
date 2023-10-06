@@ -1,26 +1,50 @@
-<label
-  for="search-country"
-  class="flex items-center gap-4 h-12 w-5/12 rounded shadow bg-white"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    class="w-6 h-6 ml-4"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-    />
-  </svg>
-  <input
-    id="search-country"
-    class="min-h-full w-full text-xs rounded-tr rounded-br pl-4"
-    type="text"
-    autocomplete=""
-    placeholder="Search for a country..."
-  />
-</label>
+<script>
+	let searchTerm;
+	let foundCountries = [];
+
+	async function searchCountry(e) {
+		searchTerm = e.target.value;
+		const countriesApiResponse = await fetch(`http://localhost:4321/api/search/${searchTerm}.json`);
+
+		const countriesJson = await countriesApiResponse.json();
+
+		console.log(countriesJson);
+	}
+
+	$: console.log(searchTerm, { foundCountries });
+</script>
+
+<div class="w-full relative bg-blue-400">
+	<label for="search-country" class="flex items-center gap-4 h-12 w-5/12 rounded shadow bg-white">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 24 24"
+			stroke-width="1.5"
+			stroke="currentColor"
+			class="w-6 h-6 ml-4"
+		>
+			<path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+			/>
+		</svg>
+		<input
+			id="search-country"
+			class="min-h-full w-full text-xs rounded-tr rounded-br pl-4"
+			type="text"
+			autocomplete=""
+			placeholder="Search for a country..."
+			on:input={searchCountry}
+		/>
+	</label>
+	<ul class="bg-blue-100 w-5/12 absolute top-full rounded shadow-xl">
+		<li class="px-2 py-2">
+			<a href="/countries/ECU" class="flex items-center gap-4">
+				<img src="https://flagcdn.com/ec.svg" alt="Ecuador" class="w-12 h-10 object-cover" />
+				<span>Ecuador</span>
+			</a>
+		</li>
+	</ul>
+</div>
