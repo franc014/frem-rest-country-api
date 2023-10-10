@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import FilterBar from "../components/Svelte/FilterBar.svelte";
 import CountryList from '../components/Svelte/CountryList.svelte';
 
-const countriesApiResponse = await fetch(`${Astro.url}api/countries.json`);
+const countriesApiResponse = await fetch(`http://localhost:4321/api/countries.json`);
 
 const countriesJson = await countriesApiResponse.json();
 
