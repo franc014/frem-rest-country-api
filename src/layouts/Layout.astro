@@ -49,6 +49,14 @@ const { title } = Astro.props;
     font-size: var(--txt-base-size-home);
   }
 
+  .alert {
+    @apply p-4 text-xl text-white rounded shadow-md w-1/2 text-center;
+  }
+
+  .alert-failure {
+    @apply bg-red-500;
+  }
+
 
   
 </style>

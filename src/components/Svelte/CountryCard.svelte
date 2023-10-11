@@ -1,5 +1,7 @@
 <script>
 	export let country;
+
+	$: console.log({ country });
 </script>
 
 <a href={`/countries/${country.cca3}`} class=" block shadow-md rounded">
@@ -13,7 +15,7 @@
 		<ul class="text-xs flex flex-col gap-2">
 			<li>Population: <span>{country.population}</span></li>
 			<li>Region: <span>{country.region}</span></li>
-			<li>Capital: <span>{country.capital[0]}</span></li>
+			<li>Capital: <span>{'capital' in country ? country.capital[0] : 'N/A'}</span></li>
 		</ul>
 	</div>
 </a>

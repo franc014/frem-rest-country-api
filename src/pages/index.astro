@@ -2,11 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import FilterBar from "../components/Svelte/FilterBar.svelte";
 import CountryList from '../components/Svelte/CountryList.svelte';
-
-const countriesApiResponse = await fetch(`http://localhost:4321/api/countries.json`);
-
-const countriesJson = await countriesApiResponse.json();
-
 ---
 
 <Layout title="Countries">
@@ -15,7 +10,7 @@ const countriesJson = await countriesApiResponse.json();
       <div class="flex justify-between items-center mb-10 ">
         <FilterBar client:only="svelte"/>
       </div>
-       <CountryList countries={countriesJson.countries}/>
+       <CountryList client:only="svelte"/>
     </div>
   </main>
 </Layout>
