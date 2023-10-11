@@ -1,10 +1,11 @@
 <script>
 	export let country;
-
-	$: console.log({ country });
 </script>
 
-<a href={`/countries/${country.cca3}`} class=" block shadow-md rounded">
+<a
+	href={`/countries/${country.cca3}`}
+	class=" block shadow-md rounded dark:text-lighter-gray dark:bg-dark-blue"
+>
 	<img
 		class="w-full object-cover rounded-t h-36"
 		src={country.flags.svg}

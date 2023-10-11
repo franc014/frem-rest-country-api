@@ -21,19 +21,20 @@
 			foundCountries = [];
 		}
 	}
-
-	$: console.log(searchTerm, { foundCountries });
 </script>
 
 <div class="w-full relative">
-	<label for="search-country" class="flex items-center gap-4 h-12 w-5/12 rounded shadow bg-white">
+	<label
+		for="search-country"
+		class="flex items-center gap-4 h-12 w-5/12 rounded shadow bg-white dark:bg-dark-blue"
+	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-6 h-6 ml-4"
+			class="w-6 h-6 ml-4 dark:text-lighter-gray"
 		>
 			<path
 				stroke-linecap="round"
@@ -43,17 +44,22 @@
 		</svg>
 		<input
 			id="search-country"
-			class="min-h-full w-full text-xs rounded-tr rounded-br pl-4"
+			class="min-h-full w-full text-xs rounded-tr rounded-br pl-4 dark:bg-dark-blue dark:text-lighter-gray"
 			type="text"
 			autocomplete=""
 			placeholder="Search for a country..."
 			on:input={searchCountry}
 		/>
 	</label>
-	<ul class="bg-lighter-gray w-5/12 absolute top-full rounded shadow-xl">
+	<ul
+		class="bg-lighter-gray w-5/12 absolute top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
+	>
 		{#each foundCountries as country}
-			<li class="px-2 py-2">
-				<a href={`/countries/${country.cca3}`} class="flex items-center gap-4">
+			<li class="">
+				<a
+					href={`/countries/${country.cca3}`}
+					class=" rounded flex items-center gap-4 hover:bg-slate-300 hover:text-dark-gray border-t border-slate-700 w-full h-full px-2 py-2"
+				>
 					<img src={country.flags.svg} alt={country.name.common} class="w-14 h-10 object-cover" />
 					<span>{country.name.common}</span>
 				</a>

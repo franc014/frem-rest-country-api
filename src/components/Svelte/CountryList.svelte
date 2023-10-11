@@ -27,7 +27,7 @@
 	});
 </script>
 
-<div class="grid gap-14">
+<div class="grid gap-14 mb-40">
 	{#if fetchError}
 		<p class="alert alert-failure">{fetchError}</p>
 	{/if}
