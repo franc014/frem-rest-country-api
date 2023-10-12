@@ -1,0 +1,31 @@
+---
+import SingleCountry from "../../components/SingleCountry.astro";
+import Layout from "../../layouts/Layout.astro";
+
+
+export async function getStaticPaths() {
+
+  const countriesApiResponse = await fetch(`https://restcountries.com/v3.1/all`);
+  const countriesJson = await countriesApiResponse.json();
+  
+  return countriesJson.map((country)=>{
+    return {
+      params: {cca : country.cca3},
+      props: { country }
+    }
+  });
+
+}
+
+const { country } = Astro.props;
+
+/* console.log({country}); */
+
+---
+<Layout  title="ecua">
+  <main class="font-primary">
+   <SingleCountry country={country}/>
+  </main>
+</Layout>
+        
+
