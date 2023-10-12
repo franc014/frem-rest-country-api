@@ -1,6 +1,7 @@
 export async function getStaticPaths(){
   const countriesApiResponse = await fetch(`http://localhost:4321/api/countries.json`);
   const countriesJson = await countriesApiResponse.json();
+  
   function mapCountries(country){
     return {
       params: {region : country.region}
@@ -15,9 +16,17 @@ export async function GET({params}) {
   const countryAPIResponse = await fetch(api);
   const countries = await countryAPIResponse.json();
 
+  const countriesJSON = JSON.stringify(countries);
+
+  const countriesArray = JSON.parse(countriesJSON);
+
+  const sortedCountries = countriesArray.sort((a, b) => {
+        return b.name.common < a.name.common ? 1 : -1;
+    })
+
   return new Response(
     JSON.stringify({
-      countries
+      countries: sortedCountries
     })
   )    
 }
