@@ -26,7 +26,7 @@
 <div class="w-full relative">
 	<label
 		for="search-country"
-		class="flex items-center gap-4 h-12 w-5/12 rounded shadow bg-white dark:bg-dark-blue"
+		class="flex items-center gap-4 h-12 mb-3 sm:mb-0 sm:w-5/12 rounded shadow bg-white dark:bg-dark-blue"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@
 		</svg>
 		<input
 			id="search-country"
-			class="min-h-full w-full text-xs rounded-tr rounded-br pl-4 dark:bg-dark-blue dark:text-lighter-gray"
+			class="min-h-full w-full text-normal sm:text-xs rounded-tr rounded-br pl-4 dark:bg-dark-blue dark:text-lighter-gray"
 			type="text"
 			autocomplete=""
 			placeholder="Search for a country..."
@@ -52,7 +52,7 @@
 		/>
 	</label>
 	<ul
-		class="bg-lighter-gray w-5/12 absolute top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
+		class="bg-lighter-gray w-5/12 absolute z-30 top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
 	>
 		{#each foundCountries as country}
 			<li class="">

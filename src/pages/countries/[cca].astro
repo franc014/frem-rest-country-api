@@ -19,10 +19,9 @@ export async function getStaticPaths() {
 
 const { country } = Astro.props;
 
-/* console.log({country}); */
 
 ---
-<Layout  title="ecua">
+<Layout  title={country.name.common}>
   <main class="font-primary">
    <SingleCountry country={country}/>
   </main>

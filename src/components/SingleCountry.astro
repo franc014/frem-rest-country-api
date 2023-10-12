@@ -28,11 +28,11 @@ const nativeName = country.name.nativeName ? Object.values(country.name.nativeNa
             <h2 class="text-2xl tracking-wide font-bold mb-10">{country.name.common}</h2>
             <div class="country-details grid gap-4">
               <ul>
-                <li>Native Name: <span><!-- {nativeName} --></span></li>
+                <li>Native Name: <span>{nativeName} </span></li>
                 <li>Population: <span>{country.population}</span></li>
                 <li>Region: <span>{country.region}</span></li>
                 <li>Sub Region: <span>{country.subregion}</span></li>
-               <!--  <li>Capitale: <span>{country.capital && country.capital[0]}</span></li> -->
+                <li>Capitale: <span>{country.capital && country.capital[0]}</span></li>
               </ul>
               <ul>
                <!--  <li>Top Level Domain: <span>{country.tld[0]}</span></li> -->
