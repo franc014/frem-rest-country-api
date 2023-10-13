@@ -13,18 +13,18 @@ const currenciesMap = currencies.map(currency=>currency.name).join(', ');
 const nativeName = country.name.nativeName ? Object.values(country.name.nativeName)[0].official : 'N/A';
 ---
 
-<div class="container mx-auto">
+<div class="px-4 sm:px-0 sm:container sm:mx-auto mb-10">
         <a href="/" class="w-min flex gap-3 items-center text-sm border py-2 px-6 shadow text-dark-gray mb-12">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black dark:text-lighter-gray">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
           </svg>
           Back
         </a>
-        <div class="grid-country grid gap-1 dark:text-lighter-gray">
+        <div class="grid-country grid gap-4 md:gap-1 dark:text-lighter-gray">
           <div class="">
-            <img class="w-11/12 object-cover" src={country.flags.svg} alt={country.name.common}>
+            <img class="w-full md:w-11/12 object-cover" src={country.flags.svg} alt={country.name.common}>
           </div>
-          <div class="px-10">
+          <div class="md:px-10">
             <h2 class="text-2xl tracking-wide font-bold mb-10">{country.name.common}</h2>
             <div class="country-details grid gap-4">
               <ul>
@@ -35,7 +35,7 @@ const nativeName = country.name.nativeName ? Object.values(country.name.nativeNa
                 <li>Capitale: <span>{country.capital && country.capital[0]}</span></li>
               </ul>
               <ul>
-               <!--  <li>Top Level Domain: <span>{country.tld[0]}</span></li> -->
+                <li>Top Level Domain: <span>{country.tld && country.tld[0]}</span></li>
                 <li>Currencies: 
                    
                  <span>{currenciesMap}</span>
@@ -45,9 +45,9 @@ const nativeName = country.name.nativeName ? Object.values(country.name.nativeNa
                   <span>{languagesMap}</span>
                 </li>
               </ul>
-              <footer class="flex mt-10 items-center">
+              <footer class="flex flex-col mt-10 md:items-center md:flex-row gap-2 md:gap-0">
                 <h3 class="text-xs">Border Countries: </h3>
-                <ul class="border-countries flex gap-2 items-center ml-2 flex-wrap">
+                <ul class="border-countries flex gap-2 items-center md:ml-2 flex-wrap">
                   {borders?.map((border)=>{
                     return <li><a href={`/countries/${border}`}>{border}</a></li>;
                   }) || 'N/A'}
@@ -69,6 +69,17 @@ const nativeName = country.name.nativeName ? Object.values(country.name.nativeNa
                          "footer footer";
     place-self: center;                     
   }
+
+
+   @media screen and (max-width: 1024px) {
+      .country-details {
+        grid-template-areas: "details1 details1"
+                             "details2 details2"
+                             "footer footer";
+        
+      }
+   }
+  
 
    ul li {
     @apply font-bold;
