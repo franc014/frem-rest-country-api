@@ -15,7 +15,7 @@
 
 <div class="relative">
 	<select
-		class="w-full sm:w-auto pl-4 pr-10 py-3 rounded bg-slate-200 dark:bg-dark-blue dark:text-lighter-gray h-full"
+		class="w-full sm:w-auto pl-4 pr-10 py-3 rounded bg-dark-gray/10 dark:bg-dark-blue dark:text-lighter-gray h-full"
 		bind:value={selectedRegion}
 		on:change={handleSelect}
 	>
@@ -26,7 +26,7 @@
 		<option value="Oceania">Oceania</option>
 	</select>
 	<span
-		class="bg-slate-400 dark:bg-dark-blue absolute w-10 top-0 right-0 h-full pointer-events-none"
+		class="bg-dark-gray dark:bg-dark-blue absolute w-10 top-0 right-0 h-full pointer-events-none"
 	/>
 </div>
 

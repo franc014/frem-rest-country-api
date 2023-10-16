@@ -5,12 +5,12 @@ import CountryList from '../components/Svelte/CountryList.svelte';
 ---
 
 <Layout title="Countries">
-  <main class="font-primary">
+  <main class="font-primary" transition:animate="slide">
     <div class="px-4 sm:px-0 sm:container sm:mx-auto ">
       <div class="flex justify-between flex-wrap sm:flex-nowrap items-center mb-10 ">
-        <FilterBar client:only="svelte"/>
+        <FilterBar client:only="svelte" />
       </div>
-       <CountryList client:only="svelte"/>
+       <CountryList client:only="svelte" />
     </div>
   </main>
 </Layout>

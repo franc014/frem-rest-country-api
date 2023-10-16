@@ -22,8 +22,8 @@ const { country } = Astro.props;
 
 ---
 <Layout  title={country.name.common}>
-  <main class="font-primary">
-   <SingleCountry country={country}/>
+  <main class="font-primary" transition:animate="slide">
+   <SingleCountry country={country} />
   </main>
 </Layout>
         

@@ -55,10 +55,10 @@
 		class="bg-lighter-gray w-5/12 absolute z-30 top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
 	>
 		{#each foundCountries as country}
-			<li class="">
+			<li class="border border-dark-gray/10">
 				<a
 					href={`/countries/${country.cca3}`}
-					class=" rounded flex items-center gap-4 hover:bg-slate-300 hover:text-dark-gray border-t border-slate-700 w-full h-full px-2 py-2"
+					class=" rounded flex items-center gap-4 hover:bg-dark-blue hover:text-theme-white w-full h-full px-2 py-2"
 				>
 					<img src={country.flags.svg} alt={country.name.common} class="w-14 h-10 object-cover" />
 					<span>{country.name.common}</span>
