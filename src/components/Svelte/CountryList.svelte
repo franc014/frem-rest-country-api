@@ -27,7 +27,8 @@
 	});
 </script>
 
-<div class="grid gap-14 mb-40">
+{#key countries}
+<div class="grid gap-14 mb-40" >
 	{#if fetchError}
 		<p class="alert alert-failure">{fetchError}</p>
 	{/if}
@@ -35,10 +36,11 @@
 	{#if !countries}
 		<p class="bg-red-200 w-20 h-20 p-8">No countries data has been fetched</p>
 	{/if}
-	{#each countries as country}
-		<CountryCard {country} />
+	{#each countries as country (country)}
+			<CountryCard {country} />
 	{/each}
 </div>
+{/key}
 
 <style>
 	div {

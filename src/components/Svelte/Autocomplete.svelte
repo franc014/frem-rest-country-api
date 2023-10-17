@@ -1,4 +1,6 @@
 <script>
+	import { fade } from 'svelte/transition';
+	import debounce from 'lodash.debounce';
 	let searchTerm;
 	let foundCountries = [];
 
@@ -21,8 +23,19 @@
 			foundCountries = [];
 		}
 	}
+
+	function resetSearch() {
+		foundCountries = [];
+	}
+
+	function handleKeyDown(e) {
+		if (e.key === 'Escape') {
+			resetSearch();
+		}
+	}
 </script>
 
+<svelte:window on:keydown={handleKeyDown} />
 <div class="w-full relative">
 	<label
 		for="search-country"
@@ -44,21 +57,25 @@
 		</svg>
 		<input
 			id="search-country"
-			class="min-h-full w-full text-normal sm:text-xs rounded-tr rounded-br pl-4 dark:bg-dark-blue dark:text-lighter-gray"
+			class=" outline-none min-h-full w-full text-normal sm:text-xs rounded-tr rounded-br pl-4 dark:bg-dark-blue dark:text-lighter-gray"
 			type="text"
-			autocomplete=""
 			placeholder="Search for a country..."
-			on:input={searchCountry}
+			on:input={debounce(searchCountry, 400)}
 		/>
+		<button
+			class:foundCountries={foundCountries.length !== 0}
+			class="text-xl text-red-500 absolute left-[90%] sm:left-[38%] md:left[40%] top-2 hidden"
+			on:click={resetSearch}>x</button
+		>
 	</label>
 	<ul
-		class="bg-lighter-gray w-5/12 absolute z-30 top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
+		class="bg-lighter-gray w-full sm:w-5/12 absolute z-30 top-full rounded shadow-xl dark:bg-dark-blue dark:text-lighter-gray"
 	>
-		{#each foundCountries as country}
-			<li class="border border-dark-gray/10">
+		{#each foundCountries as country (country)}
+			<li class="border border-dark-gray/10" transition:fade>
 				<a
 					href={`/countries/${country.cca3}`}
-					class=" rounded flex items-center gap-4 hover:bg-dark-blue hover:text-theme-white w-full h-full px-2 py-2"
+					class=" rounded flex items-center gap-4 hover:bg-dark-blue hover:text-theme-white dark: w-full h-full px-2 py-2"
 				>
 					<img src={country.flags.svg} alt={country.name.common} class="w-14 h-10 object-cover" />
 					<span>{country.name.common}</span>
@@ -67,3 +84,9 @@
 		{/each}
 	</ul>
 </div>
+
+<style>
+	.foundCountries {
+		display: block;
+	}
+</style>
