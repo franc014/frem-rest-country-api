@@ -75,7 +75,7 @@
 			<li class="border border-dark-gray/10" transition:fade>
 				<a
 					href={`/countries/${country.cca3}`}
-					class=" rounded flex items-center gap-4 hover:bg-dark-blue hover:text-theme-white dark: w-full h-full px-2 py-2"
+					class="rounded flex items-center gap-4 hover:bg-darker-blue hover:text-theme-white dark: w-full h-full px-2 py-2"
 				>
 					<img src={country.flags.svg} alt={country.name.common} class="w-14 h-10 object-cover" />
 					<span>{country.name.common}</span>
