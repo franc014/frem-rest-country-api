@@ -32,7 +32,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: https://github.com/franc014/frem-rest-country-api
-- Live Site URL: https://countries-rest-26m9rngt4-franc014.vercel.app
+- Live Site URL: https://countries-rest-api-gold.vercel.app/
 
 ## My process
 
