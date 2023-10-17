@@ -6,7 +6,7 @@
 
 	async function searchCountry(e) {
 		searchTerm = e.target.value;
-		const countriesAPI = `http://localhost:4321/api/search/${searchTerm}.json`;
+		const countriesAPI = `${import.meta.env.PUBLIC_API_HOST}/api/search/${searchTerm}.json`;
 		try {
 			const countriesApiResponse = await fetch(countriesAPI);
 

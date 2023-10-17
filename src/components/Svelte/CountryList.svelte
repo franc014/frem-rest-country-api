@@ -6,13 +6,14 @@
 	import CountryCard from './CountryCard.svelte';
 
 	async function loadComponent() {
+	
 		try {
-			const countriesApiResponse = await fetch(`http://localhost:4321/api/${$region}.json`);
+			const countriesApiResponse = await fetch(`${import.meta.env.PUBLIC_API_HOST}/api/${$region}.json`);
 			if (countriesApiResponse.status === 404) {
 				fetchError = 'Failed to fetch the requested data';
 				setTimeout(function () {
 					fetchError = '';
-				}, 2000);
+				}, 6000);
 			}
 
 			countries = (await countriesApiResponse.json()).countries;
